@@ -6,16 +6,16 @@ namespace GigWeb.Models
     {
         public Zone(string name, int capacity)
         {
-            this.name = name;
-            this.capacity = capacity;
+            Name = name;
+            Capacity = capacity;
         }
-        private string name;
-        private HashSet<Invitation> seats;
-        private int capacity;
+        public string Name{ get; set; }
+        public HashSet<Invitation> Seats{ get; set; }
+        public int Capacity{ get; set; }
 
         public int FreeSits
         {
-            get { return capacity - seats.Count; }
+            get { return Capacity - Seats.Count; }
         }
         public void BookSeat()
         {

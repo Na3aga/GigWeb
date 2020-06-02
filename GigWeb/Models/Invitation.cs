@@ -8,9 +8,9 @@ namespace GigWeb.Models
         {
         }
 
-        private int userID;
-        private DateTime purchaseDateTime;
-        private string sha512key;
-        private Zone target;
+        public int UserID { get; set; }
+        public DateTime PurchaseDateTime{ get; set; }
+        public string Sha512key{ get; set; }
+        public Zone target{ get; set; }
     }
 }

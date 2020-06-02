@@ -7,18 +7,19 @@ namespace GigWeb.Models
     {
         public Event(string name, string information)
         {
-            this.name = name;
+            Name = name;
         }
-        
-        private string name;
-        private HashSet<Zone> sitZones;
+
+        public string Name { get;set;}
+
+        public HashSet<Zone> SitZones { get; set; }
         // List of pathes to images
-        private List<string> images;
-        private string information;
-        
+        public List<string> Images { get; set; }
+        public string Information { get; set; }
+
         public int TicketsLeft()
         {
-            return sitZones.Sum(zone => zone.FreeSits);
+            return SitZones.Sum(zone => zone.FreeSits);
         }
     }
 }
