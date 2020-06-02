@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using GigWeb.Data;
+using GigWeb.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,8 +31,12 @@ namespace GigWeb
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<GigUser>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.User.RequireUniqueEmail = true;
+                })
+                .AddRoles<GigRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
 
             services.AddDbContext<RazorPagesEventContext>(options =>

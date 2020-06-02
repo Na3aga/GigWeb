@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GigWeb.Models;
 
-namespace GigWeb.Pages.Invitations
+namespace GigWeb.Pages.Events
 {
     public class IndexModel : PageModel
     {
@@ -18,11 +18,11 @@ namespace GigWeb.Pages.Invitations
             _context = context;
         }
 
-        public IList<Invitation> Invitation { get;set; }
+        public IList<Event> Event { get;set; }
 
         public async Task OnGetAsync()
         {
-            Invitation = await _context.Invitation.ToListAsync();
+            Event = await _context.Event.ToListAsync();
         }
     }
 }

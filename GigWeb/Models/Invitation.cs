@@ -10,14 +10,15 @@ namespace GigWeb.Models
         {
         }
         [Key]
-        public int invitation_id { get; set; }
+        public int InvitationId { get; set; }
         [ForeignKey("Event")]
-        public int event_id { get; set; }
-        [ForeignKey("User")]
-        public int UserID { get; set; }
+        public int EventId { get; set; }
+        [ForeignKey("Zone")]
+        public int ZoneId { get; set; }
+        [ForeignKey("GigUser")]
+        public int UserId { get; set; }
         [DataType(DataType.Date)]
         public DateTime PurchaseDateTime{ get; set; }
         public string Sha512key{ get; set; }
-        public Zone target{ get; set; }
     }
 }

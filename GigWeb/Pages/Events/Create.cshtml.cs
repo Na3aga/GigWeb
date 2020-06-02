@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using GigWeb.Models;
 
-namespace GigWeb.Pages.Invitations
+namespace GigWeb.Pages.Events
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace GigWeb.Pages.Invitations
         }
 
         [BindProperty]
-        public Invitation Invitation { get; set; }
+        public Event Event { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -35,7 +35,7 @@ namespace GigWeb.Pages.Invitations
                 return Page();
             }
 
-            _context.Invitation.Add(Invitation);
+            _context.Event.Add(Event);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

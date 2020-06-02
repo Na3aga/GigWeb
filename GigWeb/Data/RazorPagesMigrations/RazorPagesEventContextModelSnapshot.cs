@@ -20,10 +20,13 @@ namespace GigWeb.Data.RazorPagesMigrations
 
             modelBuilder.Entity("GigWeb.Models.Invitation", b =>
                 {
-                    b.Property<int>("invitation_id")
+                    b.Property<int>("InvitationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("PurchaseDateTime")
                         .HasColumnType("timestamp without time zone");
@@ -31,48 +34,15 @@ namespace GigWeb.Data.RazorPagesMigrations
                     b.Property<string>("Sha512key")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("event_id")
+                    b.Property<int>("ZoneId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("targetzone_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("invitation_id");
-
-                    b.HasIndex("targetzone_id");
+                    b.HasKey("InvitationId");
 
                     b.ToTable("Invitation");
-                });
-
-            modelBuilder.Entity("GigWeb.Models.Zone", b =>
-                {
-                    b.Property<int>("zone_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int>("zone_event_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("zone_id");
-
-                    b.ToTable("Zone");
-                });
-
-            modelBuilder.Entity("GigWeb.Models.Invitation", b =>
-                {
-                    b.HasOne("GigWeb.Models.Zone", "target")
-                        .WithMany()
-                        .HasForeignKey("targetzone_id");
                 });
 #pragma warning restore 612, 618
         }

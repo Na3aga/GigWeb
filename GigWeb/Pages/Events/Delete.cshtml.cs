@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using GigWeb.Models;
 
-namespace GigWeb.Pages.Invitations
+namespace GigWeb.Pages.Events
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace GigWeb.Pages.Invitations
         }
 
         [BindProperty]
-        public Invitation Invitation { get; set; }
+        public Event Event { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace GigWeb.Pages.Invitations
                 return NotFound();
             }
 
-            Invitation = await _context.Invitation.FirstOrDefaultAsync(m => m.invitation_id == id);
+            Event = await _context.Event.FirstOrDefaultAsync(m => m.EventId == id);
 
-            if (Invitation == null)
+            if (Event == null)
             {
                 return NotFound();
             }
@@ -44,11 +44,11 @@ namespace GigWeb.Pages.Invitations
                 return NotFound();
             }
 
-            Invitation = await _context.Invitation.FindAsync(id);
+            Event = await _context.Event.FindAsync(id);
 
-            if (Invitation != null)
+            if (Event != null)
             {
-                _context.Invitation.Remove(Invitation);
+                _context.Event.Remove(Event);
                 await _context.SaveChangesAsync();
             }
 

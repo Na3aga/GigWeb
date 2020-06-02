@@ -12,7 +12,9 @@ namespace GigWeb.Models
             Name = name;
             Information = information;
         }
-
+        
+        [Key]
+        public int EventId { get;set;}
         public string Name { get;set;}
         // List of pathes to images
         public string Image { get; set; }

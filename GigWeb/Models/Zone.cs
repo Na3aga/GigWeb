@@ -12,9 +12,10 @@ namespace GigWeb.Models
             Capacity = capacity;
         }
         [Key]
-        public int zone_id { get; set; }
+        public int ZoneId { get; set; }
         [ForeignKey("Event")]
-        public int zone_event_id { get; set; }
+        public int ZoneEventId { get; set; }
+        public int Color { get; set; }
         public string Name{ get; set; }
         public int Capacity{ get; set; }
         

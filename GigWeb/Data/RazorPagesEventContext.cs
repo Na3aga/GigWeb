@@ -13,4 +13,6 @@ using GigWeb.Models;
         }
 
         public DbSet<GigWeb.Models.Invitation> Invitation { get; set; }
+
+        public DbSet<GigWeb.Models.Event> Event { get; set; }
     }

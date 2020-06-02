@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GigWeb.Models;
 
-namespace GigWeb.Pages.Invitations
+namespace GigWeb.Pages.Events
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace GigWeb.Pages.Invitations
         }
 
         [BindProperty]
-        public Invitation Invitation { get; set; }
+        public Event Event { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace GigWeb.Pages.Invitations
                 return NotFound();
             }
 
-            Invitation = await _context.Invitation.FirstOrDefaultAsync(m => m.invitation_id == id);
+            Event = await _context.Event.FirstOrDefaultAsync(m => m.EventId == id);
 
-            if (Invitation == null)
+            if (Event == null)
             {
                 return NotFound();
             }
@@ -47,7 +47,7 @@ namespace GigWeb.Pages.Invitations
                 return Page();
             }
 
-            _context.Attach(Invitation).State = EntityState.Modified;
+            _context.Attach(Event).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +55,7 @@ namespace GigWeb.Pages.Invitations
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!InvitationExists(Invitation.invitation_id))
+                if (!EventExists(Event.EventId))
                 {
                     return NotFound();
                 }
@@ -68,9 +68,9 @@ namespace GigWeb.Pages.Invitations
             return RedirectToPage("./Index");
         }
 
-        private bool InvitationExists(int id)
+        private bool EventExists(int id)
         {
-            return _context.Invitation.Any(e => e.invitation_id == id);
+            return _context.Event.Any(e => e.EventId == id);
         }
     }
 }
