@@ -1,0 +1,50 @@
+@page
+@model GigWeb.Pages.Invitations.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Invitation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Invitation.invitation_id" />
+            <div class="form-group">
+                <label asp-for="Invitation.event_id" class="control-label"></label>
+                <input asp-for="Invitation.event_id" class="form-control" />
+                <span asp-validation-for="Invitation.event_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invitation.UserID" class="control-label"></label>
+                <input asp-for="Invitation.UserID" class="form-control" />
+                <span asp-validation-for="Invitation.UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invitation.PurchaseDateTime" class="control-label"></label>
+                <input asp-for="Invitation.PurchaseDateTime" class="form-control" />
+                <span asp-validation-for="Invitation.PurchaseDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invitation.Sha512key" class="control-label"></label>
+                <input asp-for="Invitation.Sha512key" class="form-control" />
+                <span asp-validation-for="Invitation.Sha512key" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
